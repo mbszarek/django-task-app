@@ -1,0 +1,26 @@
+{% load static %}
+<html>
+    <head>
+        <title>Task App</title>
+        <link rel="stylesheet" href="{% static 'tasks/style.css' %}">
+{#        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">#}
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    </head>
+<body>
+<div class="header">
+    <a href="{% url 'tasks:index' %}" class="logo">Tasks</a>
+    {% if user.is_authenticated %}
+    <div class="header-right">
+    <a href="{% url 'tasks:index' %}">All tasks</a>
+    <a href="{% url 'tasks:my_tasks' user.pk %}">My tasks</a>
+    <a href="{% url 'tasks:logout' %}">Logout</a>
+    {% endif %}
+</div>
+</div>
+
+<div class="content">
+    {% block content %}
+    {% endblock %}
+</div>
+</body>
+</html>

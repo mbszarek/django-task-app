@@ -1,0 +1,32 @@
+{% extends 'tasks/base.html' %}
+
+{% block content %}
+    <div class="wrapper">
+    <table>
+    <tr>
+        {% for category in headings %}
+            <th><a class="category" href="{% url 'tasks:category_detail' category.pk %}">{{ category }}</a></th>
+        {% endfor %}
+        <th><a class="add-category" href="{% url 'tasks:add_category' %}"><i class="material-icons">add_comment</i></a></th>
+    </tr>
+    <tr><td class="space-row"></td></tr>
+    {% for row in rows %}
+        <tr>
+        {% for task in row %}
+            {% if task %}
+            <td class="task"><a class="task-link" href="{% url 'tasks:task_detail' task.id %}">{{ task|default:'' }}</a></td>
+            {% else %}
+                <td class="empty-task"></td>
+            {% endif %}
+        {% endfor %}
+        </tr>
+    {% endfor %}
+        <tr><td class="space-row" style="padding: 10px 0"></td></tr>
+    <tr>
+    {% for i in headings %}
+        <td class="add-task"><a class="task-link" href="{% url 'tasks:add_task' i.pk %}"><i class="material-icons">add</i></a></td>
+    {% endfor %}
+    </tr>
+    </table>
+    </div>
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends 'tasks/base.html' %}
+
+{% block content %}
+{% if error_message %}
+    <p>{{ error_message }}</p>
+{% endif %}
+    <div class="form">
+<form class="log-form" method="post">
+{% csrf_token %}
+{{ form.as_p }}
+<button type="submit">Save</button>
+</form>
+    </div>
+    <p class="sign-text">Don't have an account? Sign in <a class="register-link" href="{% url 'tasks:register' %}">here.</a></p>
+{% endblock %}

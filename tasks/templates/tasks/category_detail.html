@@ -1,0 +1,13 @@
+{% extends 'tasks/base.html' %}
+
+{% block content %}
+    <p class="tasks-title">About category</p>
+    <div class="detail-list">
+    <p class="detail-title"><strong>Name:</strong> {{ category.category_name }}</p>
+    </div>
+    <div class="buttons">
+    <a class="return-button" href="{% url 'tasks:index' %}">Return</a>
+        <a class="return-button" href="{% url 'tasks:category_delete' category.id %}">Delete</a>
+    <a class="return-button" href="{% url 'tasks:category_edit' category.id %}">Edit</a>
+</div>
+{% endblock %}
