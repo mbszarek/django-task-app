@@ -29,9 +29,9 @@
             <ul class="comment-list">
                 {% for comment in comments %}
                     <li class="comment">
-                        <strong>Author:</strong> {{ comment.author.name }}<br/>
+                        <strong>Author:</strong> {{ comment.author.name }}><br/>
                         <strong>Date:</strong> {{ comment.date|date:"H:i d F Y" }}<br/>
-                        <strong>Text:</strong> {{ comment.comment_text }}
+                        <strong>Content:</strong> {{ comment.comment_text }}
                     </li>
                 {% endfor %}
             </ul>
