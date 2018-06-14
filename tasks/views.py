@@ -30,6 +30,25 @@ def index(request):
 
 
 @login_required(login_url='/login/')
+def available_tasks(request):
+    headings = TaskCategory.objects.all()
+    data = {cat: filter(lambda x: x.is_available(), (Task.objects.filter(task_category=cat.pk))) for cat in headings}
+    columns = [data[heading] for heading in headings]
+    columns = list(map(lambda x: list(x), columns))
+    if columns:
+        max_len = len(max(columns, key=len))
+        for col in columns:
+            col += [None, ] * (max_len - len(col))
+        rows = [[col[i] for col in columns] for i in range(max_len)]
+    else:
+        rows = None
+    return render(request, 'tasks/index.html', context={
+        'headings': headings,
+        'rows': rows,
+    })
+
+
+@login_required(login_url='/login/')
 def my_tasks(request, id):
     headings = TaskCategory.objects.all()
     data = {cat: Task.objects.filter(task_category=cat.pk) for cat in headings}

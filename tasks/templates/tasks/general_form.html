@@ -3,8 +3,8 @@
 {% block content %}
     <h1 class="tasks-title">{{ string }}</h1>
     <form class="general-form" method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Save</button>
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Save</button>
     </form>
 {% endblock %}

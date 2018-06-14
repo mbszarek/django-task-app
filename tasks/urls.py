@@ -1,4 +1,4 @@
-from django.urls import path, include
+from django.urls import path
 
 from . import views
 
@@ -19,4 +19,5 @@ urlpatterns = [
     path('my_tasks/<int:id>', views.my_tasks, name='my_tasks'),
     path('task/<int:task_id>/user/delete/<int:user_id>', views.delete_user_from_task, name='delete_user_from_task'),
     path('task/<int:id>/user/add/', views.add_user_to_task, name='add_user_to_task'),
+    path('tasks/available/', views.available_tasks, name='available_tasks'),
 ]
