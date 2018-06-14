@@ -32,7 +32,8 @@ def index(request):
 @login_required(login_url='/login/')
 def available_tasks(request):
     headings = TaskCategory.objects.all()
-    data = {cat: filter(lambda x: x.is_available(), (Task.objects.filter(task_category=cat.pk))) for cat in headings}
+    data = {cat: Task.objects.filter(task_category=cat.pk) for cat in headings}
+    data = {cat: filter(lambda x: x.is_available(), data[cat])for cat in headings}
     columns = [data[heading] for heading in headings]
     columns = list(map(lambda x: list(x), columns))
     if columns:

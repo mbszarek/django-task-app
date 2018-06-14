@@ -27,11 +27,11 @@ class Task(models.Model):
         return self.task_name
 
     def is_close_to_deadline(self):
-        now = timezone.now()
+        now = timezone.now().date()
         return now <= self.task_deadline <= now + datetime.timedelta(days=7)
 
     def is_available(self):
-        now = timezone.now()
+        now = timezone.now().date()
         return now <= self.task_deadline
 
 
